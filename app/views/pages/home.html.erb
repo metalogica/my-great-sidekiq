@@ -1,2 +1,10 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<% if current_user %>
+<hr>
+<h1> Update Your Email </h1>
+<%= simple_form_for(current_user, method: :patch, url: update_user_path) do |f| %>
+    <%= f.input :email, label_html: { class: 'my_class' } %>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>
