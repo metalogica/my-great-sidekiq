@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
     def update 
       if current_user.update(user_params)
         UpdateUserJob.perform_later(current_user.id) # <- The enrichment API ob is queued
+
         flash[:notice] = "Your profile has been updated"
         redirect_to root_path
       else
